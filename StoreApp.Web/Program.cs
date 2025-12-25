@@ -6,6 +6,7 @@ using StoreApp.Web.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 builder.Services.AddAutoMapper(typeof(MapperProfile).Assembly);
 
@@ -15,10 +16,13 @@ builder.Services.AddDbContext<StoreDbContext>(options =>
 });
 
 builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
 
 var app = builder.Build();
 
 app.UseStaticFiles();
+app.UseSession();
 
 // products/telefon => kategori urun listesi
 app.MapControllerRoute("products_in_category", "products/{category?}", new { controller = "Home", action = "Index" });
@@ -27,5 +31,6 @@ app.MapControllerRoute("products_in_category", "products/{category?}", new { con
 app.MapControllerRoute("product_details", "{name}", new { controller = "Home", action = "Details" });
 
 app.MapDefaultControllerRoute();
+app.MapRazorPages();
 
 app.Run();
