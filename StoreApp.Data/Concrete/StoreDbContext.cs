@@ -10,6 +10,7 @@ public class StoreDbContext : DbContext
 
     public DbSet<Product> Products => Set<Product>();
     public DbSet<Category> Categories => Set<Category>();
+    public DbSet<Order> Orders { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -26,12 +27,12 @@ public class StoreDbContext : DbContext
 
         modelBuilder.Entity<Product>().HasData(
             new List<Product>() {
-                new() { Id=1, Name="Samsung S24", Price=50000, Description="güzel telefon"},
-                new() { Id=2, Name="Samsung S25", Price=60000, Description="güzel telefon"},
-                new() { Id=3, Name="Samsung S26", Price=70000, Description="güzel telefon"},
-                new() { Id=4, Name="Samsung S27", Price=80000, Description="güzel telefon"},
-                new() { Id=5, Name="Samsung S28", Price=90000, Description="güzel telefon"},
-                new() { Id=6, Name="Samsung S29", Price=100000, Description="güzel telefon"},
+                new() { Id=1, Name="Iphone 16 256GB", Price=60000, Description="Siyah renk, Apple Iphone"},
+                new() { Id=2, Name="Iphone 17Pro Max", Price=99000, Description="Turuncu, Büyük Ekran Apple Iphone"},
+                new() { Id=3, Name="Iphone 15 256Gb", Price=50000, Description="Bebek mavisi, Apple Iphone"},
+                new() { Id=4, Name="Samsung S27", Price=80000, Description="Android, kaliteli kamera, Samsung telefon"},
+                new() { Id=5, Name="Playstation 5", Price=45000, Description="Yanında God Of War hediyeli"},
+                new() { Id=6, Name="Dyson AirWrap", Price=28000, Description="Saçlarınız müthiş olacak!"},
             }
         );
 
@@ -46,7 +47,6 @@ public class StoreDbContext : DbContext
         modelBuilder.Entity<ProductCategory>().HasData(
             new List<ProductCategory>() {
                 new ProductCategory() { ProductId=1, CategoryId=1},
-                new ProductCategory() { ProductId=1, CategoryId=2},
                 new ProductCategory() { ProductId=2, CategoryId=1},
                 new ProductCategory() { ProductId=3, CategoryId=1},
                 new ProductCategory() { ProductId=4, CategoryId=1},
